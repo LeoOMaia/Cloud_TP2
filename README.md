@@ -5,9 +5,9 @@ DevOps and Cloud Computing
 
 Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py (song) (song) ...``
 
-## server.py e client.py ESTÃO funcionando
+**server.py e client.py ESTÃO funcionando**
 
-##to do:
+## to do:
 
 - mudar porta do server e do client para a nossa
 - configurar diretorio de freq.pkl e rules.pkl
