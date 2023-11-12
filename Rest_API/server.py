@@ -14,7 +14,7 @@ def recommend():
     recommended_songs = []
 
     for song in songs:
-        recommended_songs.append(rules[rules['antecedents'] == {song}]['consequents'].values[0])
+        recommended_songs.append("teste")
 
     return jsonify(recommended_songs)
 
