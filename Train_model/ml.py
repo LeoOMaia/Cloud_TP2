@@ -1,7 +1,7 @@
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
 
-FILE_PATH = '2023_spotify_ds1.csv'
+FILE_PATH = '/home/datasets/2023_spotify_ds1.csv'
 
 min_support = 0.05
 min_threshold = 0.05
@@ -48,6 +48,3 @@ if __name__ == '__main__':
 
     fdm.get_freq()
     fdm.get_rules()
-
-
-

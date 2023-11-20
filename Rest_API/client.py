@@ -2,7 +2,7 @@ import requests
 import sys
 import json
 
-api_url = 'http://127.0.0.1:5000/api/recommend'
+api_url = 'http://127.0.0.1:32196/api/recommend'
 
 input_playlist = sys.argv[1:]
 
