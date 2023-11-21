@@ -4,6 +4,10 @@ import json
 
 api_url = 'http://127.0.0.1:32196/api/recommend'
 
+if len(sys.argv) < 2:
+    print("Usage: python client.py <song1> ...")
+    sys.exit(1)
+
 input_playlist = sys.argv[1:]
 
 data = json.dumps({'songs': input_playlist})

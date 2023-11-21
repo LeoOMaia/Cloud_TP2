@@ -32,19 +32,17 @@ class FreqDatasetMining:
     
     def get_freq(self):
         self.freq = apriori(self.df, min_support=min_support, use_colnames=True)
-        self.freq.to_pickle('freq.pkl')
+        self.freq.to_pickle('../Pickle/freq.pkl')
         print("freq.pkl created successfully")
     
     def get_rules(self):
         self.rules = association_rules(self.freq, metric="lift", min_threshold=min_threshold)
-        self.rules.to_pickle('rules.pkl')
+        self.rules.to_pickle('../Pickle/rules.pkl')
         print("rules.pkl created successfully")
 
 
 if __name__ == '__main__':
     fdm = FreqDatasetMining(FILE_PATH)
-
     fdm.group_by_pid_and_track_uri()
-
     fdm.get_freq()
     fdm.get_rules()
