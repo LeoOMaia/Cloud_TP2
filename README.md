@@ -13,3 +13,15 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
 - configurar diretorio de freq.pkl e rules.pkl
 - configurar melhor o jeito q vai ser recomendado as musicas (so esta printando "teste" nas recomendaçoes por enquanto)
 - fazer os dockers
+
+## Usando Kubernetes
+- Deletar servicos existentes:
+```
+    kubectl delete deploy deployment-recomender
+    kubectl delete service playlist-recommender-ml
+    project-volume-leonardomaia
+```
+- Criar volume/deployment/service:
+```
+    kubectl -n leonardomaia apply -f persistent.yaml -f deployment.yaml -f service.yaml
+```

@@ -1,7 +1,8 @@
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
+import os
 
-FILE_PATH = '/home/datasets/2023_spotify_ds1.csv'
+FILE_PATH = os.environ.get('FILE_PATH_DATASET')
 
 min_support = 0.05
 min_threshold = 0.05
@@ -46,3 +47,8 @@ if __name__ == '__main__':
     fdm.group_by_pid_and_track_uri()
     fdm.get_freq()
     fdm.get_rules()
+    
+    # Keep the container running forever
+    while True:
+        print("Running...")
+        time.sleep(60)
