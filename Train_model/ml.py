@@ -41,6 +41,11 @@ class FreqDatasetMining:
         self.rules = association_rules(self.freq, metric="lift", min_threshold=min_threshold)
         self.rules.to_pickle('../Pickle/rules.pkl')
         print("rules.pkl created successfully")
+    
+    # Keep the container running forever
+    while True:
+        print("Running...")
+        time.sleep(3)
 
 
 if __name__ == '__main__':
@@ -48,8 +53,3 @@ if __name__ == '__main__':
     fdm.group_by_pid_and_track_uri()
     fdm.get_freq()
     fdm.get_rules()
-    
-    # Keep the container running forever
-    while True:
-        print("Running...")
-        time.sleep(60)

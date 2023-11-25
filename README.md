@@ -25,3 +25,15 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
 ```
     kubectl -n leonardomaia apply -f persistent.yaml -f deployment.yaml -f service.yaml
 ```
+- Ver Containers:
+```
+    kubectl get pods
+    kubectl get services
+    kubectl get pvc
+```
+- Ver Logs de um container:
+```
+    kubectl describe pod <nome do pod>
+    kubectl describe service <nome do servico>
+    kubectl describe pvc <nome do volume>
+```
