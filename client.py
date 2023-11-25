@@ -2,7 +2,7 @@ import requests
 import sys
 import json
 
-api_url = 'http://10.96.150.194:32196/api/recommend'
+api_url = 'http://10.111.233.250:32196/api/recommend'
 
 if len(sys.argv) < 2:
     print("Usage: python client.py <song1> ...")

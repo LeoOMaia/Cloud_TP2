@@ -42,5 +42,10 @@ wget --server-response \
      --output-document response.out \
      --header='Content-Type: application/json' \
      --post-data '{"songs": ["Yesterday", "Bohemian Rhapsody"]}' \
-     http://10.96.150.194:32196/api/recommend
+     http://<CLUSTER-IP>:32196/api/recommend
+```
+use o script sheel ``test.sh`` para testar alterando o ``<CLUSTER-IP>`` para o ip do cluster
+voce pode ver o ip do cluster com o comando ``kubectl get services``
+```
+    ./test.sh
 ```
