@@ -1,6 +1,7 @@
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
 import os
+import time
 
 FILE_PATH = os.environ.get('FILE_PATH_DATASET')
 
