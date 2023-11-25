@@ -35,3 +35,12 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
     kubectl describe service <nome do servico>
     kubectl describe pvc <nome do volume>
 ```
+
+## Testando REST_API
+```
+wget --server-response \
+     --output-document response.out \
+     --header='Content-Type: application/json' \
+     --post-data '{"songs": ["Yesterday", "Bohemian Rhapsody"]}' \
+     http://10.96.150.194:32196/api/recommend
+```
