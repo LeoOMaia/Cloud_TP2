@@ -1,0 +1,12 @@
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: playlist-recommender-ml
+spec:
+  selector:
+    app: playlist-recommender
+  ports:
+    - protocol: TCP
+      port: 32196
+      targetPort: 32196
