@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: deployment-recomender
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: playlist-recommender
@@ -24,9 +24,11 @@ spec:
         - name: persistent-volume
           mountPath: /app/models
       ## ML Container ##
+      initContainers:
       - name: cloud-ml-1
         image: leoomaia/ml_cloud
         imagePullPolicy: Always
+        restartPolicy: OnFailure
         ports:
         - containerPort: 32208
         volumeMounts:

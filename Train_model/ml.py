@@ -41,12 +41,6 @@ class FreqDatasetMining:
     def get_rules(self):
         self.rules = association_rules(self.freq, metric="lift", min_threshold=min_threshold)
         self.rules.to_pickle(RULES_PATH)
-        
-    # Keep the container running forever
-    while True:
-        print("Running...")
-        time.sleep(3)
-
 
 if __name__ == '__main__':
     response = requests.get(URL, verify=False)
