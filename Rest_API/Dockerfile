@@ -24,4 +24,4 @@ USER appuser
 
 EXPOSE 32196
 
-CMD python client.py -m flask run --host=0.0.0.0 --port 32196
+CMD python -m flask run --host=0.0.0.0 --port 32196
