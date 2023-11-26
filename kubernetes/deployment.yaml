@@ -5,6 +5,7 @@ metadata:
   name: deployment-recomender
 spec:
   replicas: 3
+  
   selector:
     matchLabels:
       app: playlist-recommender
