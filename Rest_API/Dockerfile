@@ -4,23 +4,24 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 COPY . /app
+COPY ../Train_model /app 
 
-# ARG UID=10001
+ARG UID=10001
 
-# RUN adduser \
-#     --disabled-password \
-#     --gecos "" \
-#     --home "/nonexistent" \
-#     --shell "/sbin/nologin" \
-#     --no-create-home \
-#     --uid "${UID}" \
-#     appuser
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
 
-# RUN apt-get update && \
-#     apt-get install -y wget && \
-#     rm -rf /var/lib/apt/lists/
+RUN apt-get update && \
+    apt-get install -y wget && \
+    rm -rf /var/lib/apt/lists/
 
-# USER appuser
+USER appuser
 
 EXPOSE 32196
 
