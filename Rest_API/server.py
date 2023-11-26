@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*")
 
 RULES_PATH = "/app/models/rules.pkl"
 FREK_PATH = "/app/models/freq.pkl"
