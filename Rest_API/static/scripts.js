@@ -1,13 +1,6 @@
 const url_songs = 'http://playlist-recommender-ml.default.svc.cluster.local:32196/api/songs';
 const url_recommend = 'http://playlist-recommender-ml.default.svc.cluster.local:32196/api/recommend';
 
-if (clusterIP) {
-  console.log(`IP do serviço '${serviceName}':`, clusterIP);
-  console.log(`URL da API: ${url}`);
-} else {
-  console.error('Não foi possível obter o IP do serviço.');
-}
-
 let allSongsList = []; // Initialize as an empty array
 
 // Fetch songs from the API
