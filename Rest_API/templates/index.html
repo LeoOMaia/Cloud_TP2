@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Recommendation</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search songs">
+            <div id="allSongsList" class="songs-list">
+                <!-- List of all songs will be dynamically populated here -->
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="header">
+                <h3>Selected Songs</h3>
+                <button id="clearAllBtn" onclick="clearAll()">Clear All</button>
+                <button id="findPlaylistBtn" style="background-color: green;">Find Playlist</button>
+            </div>
+            <div id="selectedSongsList" class="songs-list">
+                <!-- Selected songs will be dynamically populated here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="recommendations-container">
+        <h2>Recommended Songs</h2>
+        <ul id="recommendedPlaylists"></ul>
+    </div>
+
+    <script src="../static/scripts.js"></script>
+</body>
+</html>

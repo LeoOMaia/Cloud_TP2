@@ -1,12 +1,15 @@
+import pickle
 import pandas as pd
-from mlxtend.frequent_patterns import apriori, association_rules
 import os
-import time
+import ssl
+from mlxtend.frequent_patterns import apriori, association_rules
 
-FILE_PATH = os.environ.get('FILE_PATH_DATASET')
+FILE_PATH_DATASET = os.environ.get('FILE_PATH_DATASET')
+RULES_PATH = "models/rules.pkl"
+FREK_PATH = "models/freq.pkl"
 
 min_support = 0.05
-min_threshold = 0.05
+min_threshold = 1
 
 class FreqDatasetMining:
     def __init__(self, file_path):
@@ -18,9 +21,7 @@ class FreqDatasetMining:
     def group_by_pid_and_track_uri(self):
         df = pd.read_csv(self.file_path)
 
-        df = df[['pid', 'track_uri']]
-
-        df = df.groupby(['pid', 'track_uri'])['track_uri'].count().unstack().fillna(0)
+        df = df.groupby(['pid', 'track_name'])['track_name'].count().unstack().fillna(0)
 
         df = df.applymap(self.encode)
 
@@ -33,15 +34,13 @@ class FreqDatasetMining:
             return True
     
     def get_freq(self):
-        self.freq = apriori(self.df, min_support=min_support, use_colnames=True)
-        self.freq.to_pickle('../Pickle/freq.pkl')
-        print("freq.pkl created successfully")
+        self.freq = apriori(self.df, min_support=min_support, use_colnames=True, verbose=1)
+        self.freq.to_pickle(FREK_PATH)
     
     def get_rules(self):
         self.rules = association_rules(self.freq, metric="lift", min_threshold=min_threshold)
-        self.rules.to_pickle('../Pickle/rules.pkl')
-        print("rules.pkl created successfully")
-    
+        self.rules.to_pickle(RULES_PATH)
+        
     # Keep the container running forever
     while True:
         print("Running...")
@@ -49,7 +48,7 @@ class FreqDatasetMining:
 
 
 if __name__ == '__main__':
-    fdm = FreqDatasetMining(FILE_PATH)
+    fdm = FreqDatasetMining(FILE_PATH_DATASET)
     fdm.group_by_pid_and_track_uri()
     fdm.get_freq()
     fdm.get_rules()

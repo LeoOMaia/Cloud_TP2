@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.left-panel, .right-panel {
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.songs-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.songs-list div {
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.songs-list div:hover {
+    background-color: #f0f0f0;
+}
+
+.search-input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#clearAllBtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f44336;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#clearAllBtn:hover {
+    background-color: #d32f2f;
+}
+
+#clearAllBtn:focus {
+    outline: none;
+}
+
+#findPlaylistBtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#findPlaylistBtn:hover {
+    background-color: #388e3c;
+}
+
+#findPlaylistBtn:focus {
+    outline: none;
+}
+
+.recommendations-container {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#recommendedPlaylists {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+#recommendedPlaylists li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}

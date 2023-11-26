@@ -13,6 +13,7 @@ spec:
       labels:
         app: playlist-recommender
     spec:
+      ## Server Container ##
       containers:
       - name: cloud-server-1
         image: leoomaia/server_cloud
@@ -22,18 +23,20 @@ spec:
         volumeMounts:
         - name: persistent-volume
           mountPath: /app/models
-      
+      ## ML Container ##
       - name: cloud-ml-1
         image: leoomaia/ml_cloud
         imagePullPolicy: Always
+        ports:
+        - containerPort: 32208
         volumeMounts:
         - name: persistent-volume
           mountPath: /app/models
         env:
         - name: FILE_PATH_DATASET
           value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
-      
+      ## Persistent Volume ##
       volumes:
       - name: persistent-volume
         persistentVolumeClaim:
-          claimName: project-volume-leonardomaia
+          claimName: project2-pv-leonardomaia
