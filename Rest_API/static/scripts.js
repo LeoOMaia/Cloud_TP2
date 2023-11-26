@@ -1,10 +1,7 @@
-const url_songs = 'http://10.102.75.219:32196/api/songs';
-const url_recommend = 'http://10.102.75.219:32196/api/recommend';
-
 let allSongsList = []; // Initialize as an empty array
 
 // Fetch songs from the API
-fetch(url_songs)
+fetch('http://localhost:32196/api/songs')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -113,7 +110,7 @@ function displayRecommendations(recommendations) {
 // Event listener for Find Playlist button
 document.getElementById("findPlaylistBtn").addEventListener("click", async () => {
   try {
-      const response = await fetch(url_recommend, {
+      const response = await fetch('http://localhost:32196/api/recommend', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
