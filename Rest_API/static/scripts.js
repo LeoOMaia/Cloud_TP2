@@ -1,5 +1,5 @@
-const url_songs = 'http://playlist-recommender-ml.default.svc.cluster.local:32196/api/songs';
-const url_recommend = 'http://playlist-recommender-ml.default.svc.cluster.local:32196/api/recommend';
+const url_songs = 'http://10.102.75.219:32196/api/songs';
+const url_recommend = 'http://10.102.75.219:32196/api/recommend';
 
 let allSongsList = []; // Initialize as an empty array
 
