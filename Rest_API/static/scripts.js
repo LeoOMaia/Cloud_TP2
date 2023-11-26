@@ -1,6 +1,6 @@
 let allSongsList = [];
 
-let URL = 'http://localhost:32197';
+let URL = 'http://localhost:32208';
 
 fetch(URL + '/api/songs')
   .then(response => {
@@ -117,9 +117,34 @@ function hideNoRecommendationsMessage() {
   noRecommendationsMessage.style.display = "none";
 }
 
+
+function displayRecommendations(recommendations) {
+  const recommendedList = document.getElementById("recommendedPlaylists");
+
+  recommendedList.innerHTML = "";
+
+  recommendations.forEach(recommendation => {
+    const listItem = document.createElement("li");
+    const songLink = document.createElement("a");
+    
+    songLink.textContent = recommendation;
+    songLink.href = `https://www.google.com/search?q=${encodeURIComponent(recommendation)}+song`;
+    songLink.setAttribute("target", "_blank");
+    songLink.style.color = "black";
+    
+    songLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.open(songLink.href, '_blank');
+    });
+    
+    listItem.appendChild(songLink);
+    recommendedList.appendChild(listItem);
+  });
+}
+
 document.getElementById("findPlaylistBtn").addEventListener("click", async () => {
   try {
-    const response = await fetch('http://localhost:32197/api/recommend', {
+    const response = await fetch(URL + '/api/recommend', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

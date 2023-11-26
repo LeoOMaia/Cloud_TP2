@@ -43,7 +43,7 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
 ## Testando REST_API/Usando recomendador de musica
 use port-forward para acessar o cluster em PORTS
 ```
-    adicione <ip cluster>:32197
+    adicione <ip cluster>:32208
 ```
 
 ## Acessando o ArgoCD

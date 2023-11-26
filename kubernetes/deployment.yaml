@@ -29,8 +29,6 @@ spec:
         image: leoomaia/ml_cloud
         imagePullPolicy: Always
         restartPolicy: OnFailure
-        ports:
-        - containerPort: 32208
         volumeMounts:
         - name: persistent-volume
           mountPath: /app/models
