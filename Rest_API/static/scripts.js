@@ -1,7 +1,36 @@
+// Função para obter o IP interno do serviço usando kubectl
+function getClusterIP(serviceName) {
+  try {
+    const command = `kubectl get svc ${serviceName} -o=jsonpath='{.spec.clusterIP}'`;
+    const clusterIP = execSync(command).toString().trim();
+    return clusterIP;
+  } catch (error) {
+    console.error('Erro ao obter o IP do serviço:', error);
+    return null;
+  }
+}
+
+// Nome do serviço no Kubernetes
+const serviceName = 'playlist-recommender-ml';
+
+// Obtém dinamicamente o IP interno do serviço
+const clusterIP = getClusterIP(serviceName);
+
+// Se o IP foi obtido com sucesso, monta a URL da API
+const url_songs = clusterIP ? `http://${clusterIP}:32196/api/songs` : null;
+const url_recommend = clusterIP ? `http://${clusterIP}:32196/api/recommend` : null;
+
+if (clusterIP) {
+  console.log(`IP do serviço '${serviceName}':`, clusterIP);
+  console.log(`URL da API: ${url}`);
+} else {
+  console.error('Não foi possível obter o IP do serviço.');
+}
+
 let allSongsList = []; // Initialize as an empty array
 
 // Fetch songs from the API
-fetch('http://localhost:32196/api/songs')
+fetch(url_songs)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -110,7 +139,7 @@ function displayRecommendations(recommendations) {
 // Event listener for Find Playlist button
 document.getElementById("findPlaylistBtn").addEventListener("click", async () => {
   try {
-      const response = await fetch('http://localhost:32196/api/recommend', {
+      const response = await fetch(url_recommend, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
