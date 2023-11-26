@@ -119,7 +119,7 @@ function hideNoRecommendationsMessage() {
 
 document.getElementById("findPlaylistBtn").addEventListener("click", async () => {
   try {
-    const response = await fetch(URL + '/api/recommend', {
+    const response = await fetch('http://localhost:32197/api/recommend', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -133,11 +133,17 @@ document.getElementById("findPlaylistBtn").addEventListener("click", async () =>
 
     const data = await response.json();
     const versionElement = document.getElementById("version");
-    const modelDateElement = document.getElementById("modelDate");
+    let modelDateElement = document.getElementById("modelDate");
+
+    const unixTimestamp = data.model_date;
+
+    const date = new Date(unixTimestamp * 1000);
+    const formattedDate = date.toLocaleDateString("en-US");
+
 
     if (data.version && data.model_date) {
       versionElement.textContent = 'Version: ' + data.version;
-      modelDateElement.textContent = 'Model Date: ' + data.model_date;
+      modelDateElement.textContent = 'Model date: ' + formattedDate;
     } else {
       versionElement.textContent = 'Version information not available';
       modelDateElement.textContent = 'Model date information not available';
