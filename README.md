@@ -17,10 +17,14 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
 ## Usando Kubernetes
 - Deletar servicos existentes:
 ```
+    kubectl delete deploy deployment-recomender
+    # ou
     kubectl delete deploy deployment-recomender && kubectl delete service playlist-recommender-ml && kubectl delete pvc project2-pv-leonardomaia
 ```
 - Criar volume/deployment/service:
 ```
+    kubectl -n leonardomaia apply -f deployment.yaml
+    # ou
     kubectl -n leonardomaia apply -f persistent.yaml -f deployment.yaml -f service.yaml
 ```
 - Ver Containers:
