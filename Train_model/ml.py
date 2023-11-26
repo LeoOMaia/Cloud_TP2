@@ -5,8 +5,8 @@ import ssl
 from mlxtend.frequent_patterns import apriori, association_rules
 
 FILE_PATH_DATASET = os.environ.get('FILE_PATH_DATASET')
-RULES_PATH = "models/rules.pkl"
-FREK_PATH = "models/freq.pkl"
+RULES_PATH = "/app/models/rules.pkl"
+FREK_PATH = "/app/models/freq.pkl"
 
 min_support = 0.05
 min_threshold = 1
@@ -41,10 +41,10 @@ class FreqDatasetMining:
         self.rules = association_rules(self.freq, metric="lift", min_threshold=min_threshold)
         self.rules.to_pickle(RULES_PATH)
         
-    # Keep the container running forever
-    while True:
-        print("Running...")
-        time.sleep(3)
+    # # Keep the container running forever
+    # while True:
+    #     print("Running...")
+    #     time.sleep(3)
 
 
 if __name__ == '__main__':

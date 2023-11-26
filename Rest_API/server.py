@@ -7,8 +7,8 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-RULES_PATH = "models/rules.pkl"
-FREK_PATH = "models/freq.pkl"
+RULES_PATH = "/app/models/rules.pkl"
+FREK_PATH = "/app/models/freq.pkl"
 
 def recommendations(songs):
     rules = pd.read_pickle(RULES_PATH)
@@ -64,4 +64,4 @@ def get_songs():
     return jsonify({'songs': songs_data})
 
 if __name__ == '__main__':
-    app.run(port=32196)
+    app.run()
