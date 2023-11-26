@@ -41,7 +41,13 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
 ```
 
 ## Testando REST_API
-use port-forward para acessar o cluster
+use port-forward para acessar o cluster em PORTS
 ```
-    kubectl port-forward service/playlist-recommender-ml 32196:80
+    adicione <ip cluster>:32196
+```
+
+## Acessando o ArgoCD
+use port-forward para acessar o cluster em PORTS
+```
+    adicione 31443
 ```
