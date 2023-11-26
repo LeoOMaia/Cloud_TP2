@@ -24,4 +24,4 @@ USER appuser
 
 EXPOSE 32196
 
-CMD python run --host=0.0.0.0
+CMD python server.py --host=0.0.0.0
