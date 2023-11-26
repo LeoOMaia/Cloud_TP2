@@ -1,25 +1,25 @@
 import pickle
 import pandas as pd
-import os
-import ssl
+import requests
+from io import StringIO
 from mlxtend.frequent_patterns import apriori, association_rules
 
-FILE_PATH_DATASET = os.environ.get('FILE_PATH_DATASET')
+URL = "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
 RULES_PATH = "/app/models/rules.pkl"
 FREK_PATH = "/app/models/freq.pkl"
 
-min_support = 0.05
+min_support = 0.04
 min_threshold = 1
 
 class FreqDatasetMining:
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, file):
+        self.file = file
         self.df = None
         self.freq = None
         self.rules = None
     
     def group_by_pid_and_track_uri(self):
-        df = pd.read_csv(self.file_path)
+        df = self.file
 
         df = df.groupby(['pid', 'track_name'])['track_name'].count().unstack().fillna(0)
 
@@ -48,7 +48,10 @@ class FreqDatasetMining:
 
 
 if __name__ == '__main__':
-    fdm = FreqDatasetMining(FILE_PATH_DATASET)
+    response = requests.get(URL, verify=False)
+    csv_data = StringIO(response.text)
+    df = pd.read_csv(csv_data)
+    fdm = FreqDatasetMining(df)
     fdm.group_by_pid_and_track_uri()
     fdm.get_freq()
     fdm.get_rules()

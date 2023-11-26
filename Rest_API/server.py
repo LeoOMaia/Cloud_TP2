@@ -59,9 +59,9 @@ def recommend():
 
 @app.route('/api/songs', methods=['GET'])
 def get_songs():
-    with open('/app/Tracknames/updated_track_names.json', 'r') as file:
+    with open('Tracknames/updated_track_names.json', 'r') as file:
         songs_data = json.load(file)
     return jsonify({'songs': songs_data})
 
 if __name__ == '__main__':
-    app.run(port=32196)
+    app.run(port=32196, host="0.0.0.0")
