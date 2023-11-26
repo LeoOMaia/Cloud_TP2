@@ -1,7 +1,5 @@
 FROM python:latest
 
-RUN pip install -r requirements.txt
-
 WORKDIR /app
 COPY . /app
 
@@ -15,6 +13,8 @@ RUN adduser \
     --no-create-home \
     --uid "${UID}" \
     appuser
+
+RUN pip install -r requirements.txt
 
 USER root
 
