@@ -3,12 +3,14 @@ from flask_cors import CORS
 import pickle
 import json
 import pandas as pd
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 RULES_PATH = "/app/models/rules.pkl"
 FREK_PATH = "/app/models/freq.pkl"
+time = os.path.getmtime(RULES_PATH)
 
 def recommendations(songs):
     rules = pd.read_pickle(RULES_PATH)
@@ -53,9 +55,13 @@ def index():
 def recommend():
     data = request.json
     input_songs = data.get('songs', [])
-    
     recommended = recommendations(input_songs)
-    return jsonify({'recommended_playlists': recommended})
+    resp = {
+        "recommended_playlists": recommended,
+        "version": 1.0,
+        "model_date": time
+    }
+    return jsonify(resp)
 
 @app.route('/api/songs', methods=['GET'])
 def get_songs():
