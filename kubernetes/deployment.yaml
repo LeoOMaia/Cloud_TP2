@@ -4,8 +4,7 @@ kind: Deployment
 metadata:
   name: deployment-recomender
 spec:
-  replicas: 3
-  
+  replicas: 1
   selector:
     matchLabels:
       app: playlist-recommender
