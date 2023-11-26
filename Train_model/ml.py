@@ -1,6 +1,7 @@
 import pickle
 import pandas as pd
 import requests
+import time
 from io import StringIO
 from mlxtend.frequent_patterns import apriori, association_rules
 

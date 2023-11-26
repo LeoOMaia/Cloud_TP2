@@ -8,5 +8,5 @@ spec:
     app: playlist-recommender
   ports:
     - protocol: TCP
-      port: 32196
-      targetPort: 32196
+      port: 8008
+      targetPort: 8008
