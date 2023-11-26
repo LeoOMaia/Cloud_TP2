@@ -1,7 +1,8 @@
-let allSongsList = []; // Initialize as an empty array
+let allSongsList = [];
 
-// Fetch songs from the API
-fetch('http://localhost:32197/api/songs')
+let URL = 'http://localhost:32197';
+
+fetch(URL + '/api/songs')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -26,12 +27,7 @@ function populateSongsList(songs, listElement) {
   songListDiv.innerHTML = "";
 
   if (songs && Array.isArray(songs)) {
-    const searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
-
-    // Filter songs based on case-insensitive search
-    const filteredSongs = songs.filter(song => song.toLowerCase().includes(searchValue));
-
-    filteredSongs.forEach(song => {
+    songs.forEach(song => {
       const songOption = document.createElement("div");
       songOption.classList.add("song-option");
       songOption.textContent = song;
@@ -76,11 +72,15 @@ const searchInput = document.getElementById("searchInput");
 
 function searchAndUpdate() {
   const searchValue = searchInput.value.trim().toLowerCase();
-  const filteredSongs = allSongsList.filter(song => song.toLowerCase().includes(searchValue));
-  populateSongsList(filteredSongs, "allSongsList");
+  let filteredAllSongs = [];
+  if (searchValue !== '') {
+    filteredAllSongs = allSongsList.filter(song => song.toLowerCase().includes(searchValue));
+  }
+
+  populateSongsList(filteredAllSongs, 'allSongsList');
+  populateSongsList(selectedSongs, 'selectedSongsList');
 }
 
-// Attach debounced search function to the input
 searchInput.addEventListener("input", debounce(searchAndUpdate, 300));
 
 document.getElementById("clearAllBtn").addEventListener("click", () => {
@@ -90,16 +90,13 @@ document.getElementById("clearAllBtn").addEventListener("click", () => {
     populateSongsList(selectedSongs, "selectedSongsList");
   });
 
-// Assume you have a container in your HTML for recommendations with ID 'recommendations-container'
 const recommendationsContainer = document.querySelector('.recommendations-container');
 
 function displayRecommendations(recommendations) {
   const recommendedList = document.getElementById("recommendedPlaylists");
 
-  // Clear previous recommendations
   recommendedList.innerHTML = "";
 
-  // Display new recommendations
   recommendations.forEach(recommendation => {
       const listItem = document.createElement("li");
       listItem.textContent = recommendation;
@@ -107,33 +104,58 @@ function displayRecommendations(recommendations) {
   });
 }
 
-// Event listener for Find Playlist button
+function displayNoRecommendationsMessage() {
+  const recommendedList = document.getElementById("recommendedPlaylists");
+  const noRecommendationsMessage = document.getElementById("noRecommendationsMessage");
+
+  recommendedList.innerHTML = "";
+  noRecommendationsMessage.style.display = "block";
+}
+
+function hideNoRecommendationsMessage() {
+  const noRecommendationsMessage = document.getElementById("noRecommendationsMessage");
+  noRecommendationsMessage.style.display = "none";
+}
+
 document.getElementById("findPlaylistBtn").addEventListener("click", async () => {
   try {
-      const response = await fetch('http://localhost:32197/api/recommend', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ songs: selectedSongs })
-      });
+    const response = await fetch(URL + '/api/recommend', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ songs: selectedSongs })
+    });
 
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
 
-      const data = await response.json();
-      console.log('Recommendations:', data.recommended_playlists);
+    const data = await response.json();
+    const versionElement = document.getElementById("version");
+    const modelDateElement = document.getElementById("modelDate");
 
-      // Update the UI with the recommendations
+    if (data.version && data.model_date) {
+      versionElement.textContent = 'Version: ' + data.version;
+      modelDateElement.textContent = 'Model Date: ' + data.model_date;
+    } else {
+      versionElement.textContent = 'Version information not available';
+      modelDateElement.textContent = 'Model date information not available';
+    }
+
+    console.log('Recommendations:', data.recommended_playlists);
+
+    if (data.recommended_playlists.length > 0) {
       displayRecommendations(data.recommended_playlists);
+      hideNoRecommendationsMessage();
+    } else {
+      displayNoRecommendationsMessage();
+    }
   } catch (error) {
-      console.error('Error:', error);
+    console.error('Error:', error);
   }
 });
 
-
-// Debounce function for search input
 function debounce(func, delay) {
   let timeoutId;
   return function () {

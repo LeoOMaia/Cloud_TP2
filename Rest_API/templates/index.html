@@ -10,7 +10,6 @@
         <div class="left-panel">
             <input type="text" id="searchInput" class="search-input" placeholder="Search songs">
             <div id="allSongsList" class="songs-list">
-                <!-- List of all songs will be dynamically populated here -->
             </div>
         </div>
 
@@ -21,7 +20,6 @@
                 <button id="findPlaylistBtn" style="background-color: green;">Find Playlist</button>
             </div>
             <div id="selectedSongsList" class="songs-list">
-                <!-- Selected songs will be dynamically populated here -->
             </div>
         </div>
     </div>
@@ -29,6 +27,14 @@
     <div class="recommendations-container">
         <h2>Recommended Songs</h2>
         <ul id="recommendedPlaylists"></ul>
+        <div id="noRecommendationsMessage" style="display: none;">
+            <p>Couldn't find any recommended songs based on your selection. Please choose more songs or songs related to each other.</p>
+        </div>
+    </div>
+
+    <div class="model-info-container">
+        <p id="version">Version: </p>
+        <p id="modelDate">Model Date: </p>
     </div>
 
     <script src="../static/scripts.js"></script>

@@ -40,10 +40,10 @@ Rodar ``server.py``, depois rodar ``client.py`` desse jeito: ``python client.py 
     kubectl describe pvc <nome do volume>
 ```
 
-## Testando REST_API
+## Testando REST_API/Usando recomendador de musica
 use port-forward para acessar o cluster em PORTS
 ```
-    adicione <ip cluster>:32196
+    adicione <ip cluster>:32197
 ```
 
 ## Acessando o ArgoCD
