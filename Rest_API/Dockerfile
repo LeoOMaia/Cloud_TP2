@@ -4,7 +4,6 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 COPY . /app
-COPY ../Train_model /app 
 
 ARG UID=10001
 
