@@ -69,5 +69,6 @@ def get_songs():
         songs_data = json.load(file)
     return jsonify({'songs': songs_data})
 
+
 if __name__ == '__main__':
     app.run(port=32208, host="0.0.0.0")
