@@ -1,0 +1,12 @@
+project: leonardomaia-project
+source:
+  repoURL: 'https://github.com/LeoOMaia/Cloud_TP2'
+  path: kubernetes
+  targetRevision: HEAD
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: leonardomaia
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
