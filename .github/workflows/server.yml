@@ -6,7 +6,6 @@ on:
       - Rest_API/*
 jobs: 
   build-deploy-server:
-    name: Push Docker images
     runs-on: ubuntu-latest
     steps:
       - name: Check repository
