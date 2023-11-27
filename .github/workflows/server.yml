@@ -1,0 +1,26 @@
+name: build server
+
+on:
+  push:
+    paths:
+      - Rest_API/*
+jobs: 
+  build-deploy-server:
+    name: Push Docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check repository
+        uses: actions/checkout@v3
+      
+      - name: User and Token for Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.CLOUDTP2_USERNAME }}
+          password: ${{ secrets.CLOUDTP2_TOKEN }}
+          
+      - name: Build and push Docker image for Rest_API server
+        uses: docker/build-push-action@v4
+        with:
+          context: Rest_API/
+          push: true
+          tags: leoomaia/server_cloud

@@ -1,11 +1,11 @@
-name: CI
+name: builde Machine Learning
+
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-jobs:
-  push_to_registry:
+    paths:
+      - Train_model/*
+jobs: 
+  build-deploy-server:
     name: Push Docker images
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +24,3 @@ jobs:
           context: Train_model/
           push: true
           tags: leoomaia/ml_cloud
-          
-      - name: Build and push Docker image for Rest_API server
-        uses: docker/build-push-action@v4
-        with:
-          context: Rest_API/
-          push: true
-          tags: leoomaia/server_cloud
