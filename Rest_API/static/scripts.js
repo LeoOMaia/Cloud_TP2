@@ -128,7 +128,7 @@ function displayRecommendations(recommendations) {
     const songLink = document.createElement("a");
     
     songLink.textContent = recommendation;
-    songLink.href = `https://www.google.com/search?q=${encodeURIComponent(recommendation)}+song`;
+    songLink.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(recommendation)}`;
     songLink.setAttribute("target", "_blank");
     songLink.style.color = "black";
     
