@@ -27,8 +27,6 @@ spec:
       - name: cloud-ml-1
         image: leoomaia/ml_cloud
         imagePullPolicy: Always
-        ports:
-        - containerPort: 32208
         volumeMounts:
         - name: persistent-volume
           mountPath: /app/models
